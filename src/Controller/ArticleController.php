@@ -53,6 +53,13 @@ class ArticleController extends AbstractController{
     public function showCategory(INT $id, CategoryRepository $CategoryRepository):Response
     {
         $category = $CategoryRepository->find($id);
+
+        if(!$category)
+        {
+            $html404 = $this->renderView('guest/404.html.twig');
+            return new Response($html404, 404);
+        }
+
         $title = $category->getTitle();
         return $this->render('guest/showCategory.html.twig', [
             'categories' => $category,
