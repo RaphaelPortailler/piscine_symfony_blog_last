@@ -13,6 +13,7 @@
                     {% for category in categories %}
                         <div class="divArticles">
                             <p><span class="spanArticles">Titre de la catégorie: </span>{{ category.title }}</p>
+                            <br>
                             <a class="ancreCategory" href="{{ path('show_category', {id: category.id }) }}">Voir la catégorie</a>
                         </div>
                     {% endfor %}
