@@ -1,0 +1,22 @@
+{% extends'base.html.twig' %}
+
+{# ------------- TITRE ------------- #}
+
+    {% block metatitle %}
+        Blog : Article choisis
+    {% endblock %}
+
+        {% block body %}
+
+            <h1 id="h1Articles">Nos Articles :</h1>
+            <section id="sectArticles">
+                        <div class="divArticles">
+                            <p><span class="spanArticles">Titre : </span>{{ article.title }}</p>
+                            <p><span class="spanArticles">Description : </span>{{ article.description }}</p>
+                            <div id="imgArticles">
+                                <img src="{{ article.image }}" alt="{{ article.title }}">
+                            </div>
+                        </div>
+            </section>
+
+        {% endblock %}

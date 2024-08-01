@@ -1,0 +1,27 @@
+{% extends'base.html.twig' %}
+
+{# ------------- TITRE ------------- #}
+
+    {% block metatitle %}
+        Blog : Voici la categorie
+    {% endblock %}
+
+        {% block body %}
+
+            <h1 id="h1Articles">Nos articles de la catégories : {{ title }}</h1>
+                <section id="sectArticles">
+                    {% for category in categories.articles %}
+                        {% if category.isPublished %}
+                            <div class="divArticles">
+                                <p><span class="spanArticles">Titre : </span>{{ category.title }}</p>
+                                <p><span class="spanArticles">Description : </span>{{ category.description }}</p>
+                                <div id="imgArticles">
+                                    <img src="{{ category.image }}" alt="{{ category.title }}">
+                                </div>
+                                <br>
+                                <a class="ancreCategory" href="{{ path('show_article', {id: category.id }) }}">Voir l'article</a>
+                            </div>
+                        {% endif %}
+                    {%endfor %}
+                </section>
+        {% endblock %}
