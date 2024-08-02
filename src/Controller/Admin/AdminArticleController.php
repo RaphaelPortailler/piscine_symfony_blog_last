@@ -34,12 +34,21 @@ class AdminArticleController extends AbstractController
             return new Response($html, 404);
         }
 
+    try{
         // j'utilise la classe entity manager
         // pour préparer la requête SQL de suppression
         // cette requête n'est pas executée tout de suite
         $entityManager->remove($articles);
         // j'execute la / les requête SQL préparée
         $entityManager->flush();
+
+        $this->addFlash('succes', 'Article bien supprimé');
+
+    }catch(\Exception $exception){
+            return $this->rederView('admin/page/error.html.twig', [
+                'error' => $exception->getMessage()
+            ]);
+    }
 
         return $this->redirectToRoute('admin_articles');
     }
