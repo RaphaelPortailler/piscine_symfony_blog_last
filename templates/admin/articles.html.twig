@@ -14,6 +14,7 @@
                 <td>Titre</td>
                 <td>Date</td>
                 <td>Est publié ?</td>
+                <td>Suppression</td>
             </tr>
 
 
@@ -30,8 +31,8 @@
                         {% else %}
                             <p>Non</p>
                         {% endif %}
-
                     </td>
+                    <td><a class="black" href="{{ path('delete_articles', {id: article.id}) }}">Supprimez</a></td>
                 </tr>
             {% endfor %}
         </table>
