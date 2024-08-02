@@ -42,10 +42,9 @@ class AdminArticleController extends AbstractController
         // j'execute la / les requête SQL préparée
         $entityManager->flush();
 
-        $this->addFlash('succes', 'Article bien supprimé');
-
-    }catch(\Exception $exception){
-            return $this->rederView('admin/page/error.html.twig', [
+        $this->addFlash('success', 'Article bien supprimé');
+    } catch(\Exception $exception){
+            return $this->render('admin/page/error.html.twig', [
                 'error' => $exception->getMessage()
             ]);
     }
