@@ -19,7 +19,7 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/show-category/{id}', name: 'show_category')]
-    public function showCategory(INT $id, CategoryRepository $CategoryRepository):Response
+    public function showCategory(int $id, CategoryRepository $CategoryRepository):Response
     {
         $category = $CategoryRepository->find($id);
 

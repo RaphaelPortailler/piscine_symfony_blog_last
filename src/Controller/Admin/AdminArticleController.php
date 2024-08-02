@@ -30,7 +30,7 @@ class AdminArticleController extends AbstractController
         $articles = $articleRepository->find($id);
 
         if (!$articles) {
-            $html = $this->renderView('admin/page/404.html.twig');
+            $html = $this->renderView('admin/404.html.twig');
             return new Response($html, 404);
         }
 

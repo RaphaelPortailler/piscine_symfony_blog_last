@@ -24,7 +24,7 @@ class ArticleController extends AbstractController{
 
 
     #[Route('/show-article/{id}', name: 'show_article')]
-    public function showArticle(INT $id, ArticleRepository $ArticleRepository):Response
+    public function showArticle(int $id, ArticleRepository $ArticleRepository):Response
     {
         $article = $ArticleRepository->find($id);
 
