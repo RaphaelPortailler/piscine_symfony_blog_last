@@ -6,36 +6,34 @@
     <link rel="stylesheet" href="{{ asset('assets/admin.style.css') }}">
 </head>
 
-{# ------------- HEADER ------------- #}
-<header>
-    <nav id="navHeader">
-        <ul id="ulHeader">
-            <li>
-                <a>Admin</a>
-            </li>
-        </ul>
-    </nav>
-</header>
-
 
 <body>
+    {# ------------- HEADER ------------- #}
+    <header>
+        <nav id="navHeader">
+            <ul id="ulHeader">
+                <li>
+                    <a>Admin</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
 
 
 {% block body %}
 
 {% endblock %}
+
+
+    {# ------------- FOOTER ------------- #}
+    <footer id="FooterPub">
+        <p>© Copyright Portailler Raphael</p>
+    </footer>
 </body>
-
-{# ------------- FOOTER ------------- #}
-<footer id="FooterPub">
-    <p>© Copyright Portailler Raphael</p>
-</footer>
-
-
 </html>

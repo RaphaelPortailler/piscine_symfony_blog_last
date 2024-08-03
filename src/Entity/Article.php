@@ -38,6 +38,12 @@ class Article
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?Category $category = null;
 
+
+    public function __construct(){
+        $this->createdAt = new \DateTime('NOW');
+        $this->updatedAt = new \DateTime('NOW');
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,7 +126,7 @@ class Article
         return $this->isPublished;
     }
 
-    public function setIdPublished(string $isPublished): static
+    public function setIsPublished(string $isPublished): static
     {
         $this->isPublished = $isPublished;
 
