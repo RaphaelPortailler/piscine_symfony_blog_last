@@ -21,7 +21,6 @@
                 <td>Date</td>
                 <td>Est publié ?</td>
                 <td>Suppression</td>
-                <td>Modification</td>
             </tr>
 
 
@@ -43,8 +42,8 @@
                             <p>Non</p>
                         {% endif %}
                     </td>
-                    <td><a class="black" href="{{ path('delete_articles', {id: article.id}) }}">Supprimez</a></td>
-                    <td><a class="black" href="{{ path('admin_update_article', {id: article.id}) }}">Modifier</a></td>
+                    <td><a class="black" href="{{ path('delete_articles', {id: article.id}) }}">Supprimez</a>
+                    <a class="black" href="{{ path('admin_update_article', {id: article.id}) }}">Modifier</a></td>
                 </tr>
             {% endfor %}
         </table>

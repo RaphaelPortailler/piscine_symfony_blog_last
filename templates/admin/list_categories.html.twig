@@ -1,0 +1,36 @@
+{% extends 'admin/base.html.twig' %}
+
+    {% block title %}
+        Admin : Les Catégories
+    {% endblock %}
+
+
+
+{% block body %}
+
+<h1 id="h1Articles">Les articles : </h1>
+
+<section>
+
+
+    <table>
+        <tr>
+            <td>Id</td>
+            <td>Titre</td>
+            <td>Actions</td>
+
+        </tr>
+
+        {% for category in categories %}
+        <tr>
+            <td>{{ category.id }}</td>
+            <td>{{ category.title }}</td>
+            <td><a class="black" href="">Supprimez</a>
+                <a class="black" href="">Modifier</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</section>
+
+{% endblock %}
