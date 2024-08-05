@@ -19,6 +19,7 @@
                 <td>Image</td>
                 <td>Titre</td>
                 <td>Date</td>
+                <td>Catégorie</td>
                 <td>Est publié ?</td>
                 <td>Suppression</td>
             </tr>
@@ -35,6 +36,7 @@
                     </td>
                     <td>{{ article.title }}</td>
                     <td>{{ article.createdAt | date('d-m-Y') }}</td>
+                    <td>{{ article.category ? article.category.title : 'sans catégorie' }}</td>
                     <td>
                         {% if article.isPublished %}
                             <p>Oui</p>
