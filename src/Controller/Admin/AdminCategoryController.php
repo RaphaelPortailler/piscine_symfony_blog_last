@@ -28,7 +28,7 @@ class AdminCategoryController extends AbstractController
 
 
 
-    #[Route('/admin/categories/delete/{id}', name: 'delete_categories')]
+    #[Route('/admin/categories/delete/{id}', name: 'delete_category')]
     public function deleteArticle(int $id,CategoryRepository  $categoryRepository, EntityManagerInterface $entityManager): Response
     {
         $categories = $categoryRepository->find($id);
@@ -59,7 +59,7 @@ class AdminCategoryController extends AbstractController
 
 
 
-    #[Route('/admin/categories/insert', name: 'insert_categories')]
+    #[Route('/admin/categories/insert', name: 'insert_category')]
     public function insertCategory(Request $request, EntityManagerInterface $entityManager): Response
     {
         $category = new Category();
@@ -72,14 +72,42 @@ class AdminCategoryController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Article Créer');
+            $this->addFlash('success', 'Categorie Créer');
         }
 
         $categoryCreateFormView = $categoryCreateForm->createView();
 
         return $this->render('admin/insert_categories.html.twig', [
-            'categoryCreateForm' => $categoryCreateFormView
+            'categoryForm' => $categoryCreateFormView
         ]);
+    }
+
+
+
+
+
+    #[Route('/admin/categories/update/{id}', 'update_category')]
+    public function updateArticle(int $id, Request $request, EntityManagerInterface $entityManager, CategoryRepository $categoryRepository): Response
+    {
+        $category = $categoryRepository->find($id);
+
+        $categoryCreateForm = $this->createForm(CategoryType::class, $category);
+
+        $categoryCreateForm->handleRequest($request);
+
+        if ($categoryCreateForm->isSubmitted() && $categoryCreateForm->isValid()) {
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Categorie enregistré');
+        }
+
+        $categoryCreateFormView = $categoryCreateForm->createView();
+
+        return $this->render('admin/update_category.html.twig', [
+            'categoryForm' => $categoryCreateFormView
+        ]);
+
     }
 
 

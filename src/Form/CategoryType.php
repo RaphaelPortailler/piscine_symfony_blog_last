@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,13 +15,11 @@ class CategoryType extends AbstractType
         $builder
             ->add('title')
             ->add('color')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
+            ->add('submit', SubmitType::class, [
+                'label' => 'Enregistrer',
             ])
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

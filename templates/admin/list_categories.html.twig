@@ -25,8 +25,8 @@
         <tr>
             <td>{{ category.id }}</td>
             <td>{{ category.title }}</td>
-            <td><a class="black" href="{{ path('delete_categories', {id: category.id}) }}">Supprimez</a>
-                <a class="black" href="">Modifier</a></td>
+            <td><a class="black" href="{{ path('delete_category', {id: category.id}) }}">Supprimez</a>
+                <a class="black" href="{{ path('update_category', {id: category.id}) }}">Modifier</a></td>
         </tr>
         {% endfor %}
     </table>
