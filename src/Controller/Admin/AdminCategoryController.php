@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
-use App\Entity\Article;
-use App\Form\ArticleType;
+use App\Entity\Category;
+use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,6 +23,62 @@ class AdminCategoryController extends AbstractController
 
         return $this->render('admin/list_categories.html.twig', [
             'categories' => $categories
+        ]);
+    }
+
+
+
+    #[Route('/admin/categories/delete/{id}', name: 'delete_categories')]
+    public function deleteArticle(int $id,CategoryRepository  $categoryRepository, EntityManagerInterface $entityManager): Response
+    {
+        $categories = $categoryRepository->find($id);
+
+        if (!$categories) {
+            $html = $this->renderView('admin/404.html.twig');
+            return new Response($html, 404);
+        }
+
+        try{
+            // j'utilise la classe entity manager
+            // pour préparer la requête SQL de suppression
+            // cette requête n'est pas executée tout de suite
+            $entityManager->remove($categories);
+            // j'execute la / les requête SQL préparée
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Categorie bien supprimé');
+        } catch(\Exception $exception){
+            return $this->render('admin/page/error.html.twig', [
+                'error' => $exception->getMessage()
+            ]);
+        }
+
+        return $this->redirectToRoute('admin_category');
+    }
+
+
+
+
+    #[Route('/admin/categories/insert', name: 'insert_categories')]
+    public function insertCategory(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $category = new Category();
+
+        $categoryCreateForm = $this->createForm(CategoryType::class ,$category);
+
+        $categoryCreateForm->handleRequest($request);
+
+        if ($categoryCreateForm->isSubmitted() && $categoryCreateForm->isValid()) {
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Article Créer');
+        }
+
+        $categoryCreateFormView = $categoryCreateForm->createView();
+
+        return $this->render('admin/insert_categories.html.twig', [
+            'categoryCreateForm' => $categoryCreateFormView
         ]);
     }
 
