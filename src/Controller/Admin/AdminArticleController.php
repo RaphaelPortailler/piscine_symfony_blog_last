@@ -80,7 +80,7 @@ class AdminArticleController extends AbstractController
     }
 
     #[Route('/admin/articles/update/{id}', 'admin_update_article')]
-    public function updateArticle(int $id, Request $request, EntityManagerInterface $entityManager, ArticleRepository $articleRepository)
+    public function updateArticle(int $id, Request $request, EntityManagerInterface $entityManager, ArticleRepository $articleRepository): Response
     {
         $article = $articleRepository->find($id);
 
