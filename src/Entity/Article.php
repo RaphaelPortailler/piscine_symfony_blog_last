@@ -36,6 +36,8 @@ class Article
     private ?bool $isPublished = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
+    // Quand la catégorie est supprimé on supprime la valeur de category_id dans les articles liés à la catégorie
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?Category $category = null;
 
 

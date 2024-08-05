@@ -48,8 +48,8 @@ class AdminCategoryController extends AbstractController
 
             $this->addFlash('success', 'Categorie bien supprimé');
         } catch(\Exception $exception){
-            return $this->render('admin/page/error.html.twig', [
-                'error' => $exception->getMessage()
+            return $this->render('admin/error.html.twig', [
+                'errorMessage' => $exception->getMessage()
             ]);
         }
 
@@ -96,6 +96,7 @@ class AdminCategoryController extends AbstractController
         $categoryCreateForm->handleRequest($request);
 
         if ($categoryCreateForm->isSubmitted() && $categoryCreateForm->isValid()) {
+            $category->setUpdatedAt(new \DateTime('NOW'));
             $entityManager->persist($category);
             $entityManager->flush();
 
